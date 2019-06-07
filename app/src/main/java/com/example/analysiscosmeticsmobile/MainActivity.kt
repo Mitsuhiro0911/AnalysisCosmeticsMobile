@@ -15,7 +15,10 @@ class MainActivity : AppCompatActivity() {
         val cal = Calculator()
         val write = Write()
         // コーパスの商品数を計算
-
+        val asset = assets.open("cosme_product.xml")
+        val str = asset.reader(charset=Charsets.UTF_8).use{
+            it.readText()
+        }
 //        val assetManager: AssetManager = getResources().getAssets()
 //        var xml = assetManager.openXmlResourceParser("cosme_product.xml");
 //        val productNum = cal.calProductNum()
