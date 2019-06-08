@@ -2,6 +2,7 @@ package com.example.analysiscosmeticsmobile
 
 import net.sf.javaml.core.DenseInstance
 import net.sf.javaml.distance.CosineSimilarity
+import org.dom4j.Document
 import org.dom4j.Node
 import kotlin.math.log10
 
@@ -43,7 +44,7 @@ class Calculator{
      * @param[idfMap] ある成分を含んでいる商品数で算出したIDF値のマップ
      * @return 商品の素性ベクトル
      */
-    fun calFeatureVector(productNum: Int, unifiedList: MutableList<String>, idfMap: LinkedHashMap<String, Double>): MutableList<LinkedHashMap<String, Double>>{
+    fun calFeatureVector(productNum: Int, unifiedList: MutableList<String>, idfMap: LinkedHashMap<String, Double>, cosmeComponentDictionary: Document): MutableList<LinkedHashMap<String, Double>>{
         val productMapList = mutableListOf<LinkedHashMap<String, Double>>()
         for (i in 1..productNum) {
             val productInformation: String = "//product[@id=".plus(i).plus("]//component")
@@ -52,7 +53,7 @@ class Calculator{
             for (node in nodes) {
                 productElementList.add(node.text)
             }
-            val unifiedProductElementList: MutableList<String> = PreProcessing().unitySynonym(productElementList)
+            val unifiedProductElementList: MutableList<String> = PreProcessing().unitySynonym(productElementList, cosmeComponentDictionary)
             val productMap: LinkedHashMap<String, Double> = linkedMapOf()
             for (j in 0 until unifiedList.size) {
                 if (unifiedProductElementList.contains(unifiedList.get(j))) {

@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         // コーパスの商品数を計算
         val productNum = cosmeProductCorpas.selectNodes("//product").count()
-
+        // 全成分情報を抽出
+        val componentList: MutableList<String> = Parser().extractAllComponent(cosmeProductCorpas)
+        // 抽出した全成分情報に同義語統一処理を行う
+        val unifiedList: MutableList<String> = PreProcessing().unitySynonym(componentList, cosmeComponentDictionary)
     }
 }
