@@ -24,10 +24,8 @@ class MainActivity : AppCompatActivity() {
         val write = Write()
         // コーパスの商品数を計算
 
-        val xml: InputStream = assets.open("cosme_product.xml")
-        val f = XPathFactory.newInstance()
-        val path = f.newXPath()
         val reader = SAXReader()
+        val xml: InputStream = assets.open("cosme_product.xml")
         val document = reader.read(xml)
         Log.d("MainActivity", document.selectNodes("//product").count().toString())
 
