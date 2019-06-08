@@ -9,16 +9,6 @@ class Calculator{
     private val cs = CosineSimilarity()
 
     /**
-     * cosme_product.xmlに登録されている商品数を計算する
-     *
-     * @return cosme_product.xmlに登録されている商品
-     */
-    fun calProductNum(): Int{
-        val productCount: List<Node> = Constants.cosmeProductCorpas.selectNodes("//product")
-        return productCount.count()
-    }
-
-    /**
      * ある成分を含んでいる商品数で算出したIDF値のマップを返す
      *
      * @param[productNum] 全商品数
