@@ -37,5 +37,15 @@ class MainActivity : AppCompatActivity() {
         Log.d("unified", unifiedList.get(124).toString())
         Log.d("unified", unifiedList.get(125).toString())
         Log.d("unified", unifiedList.get(126).toString())
+
+        val testList: MutableList<String> = mutableListOf()
+        testList.add("Android")
+        testList.add("Android")
+        testList.add("Android")
+        testList.add("Android")
+        testList.add("Android")
+        for(test in testList){
+            Log.d("debug", test.toString())
+        }
     }
 }
