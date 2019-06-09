@@ -15,7 +15,7 @@ class PreProcessing{
         val unifiedList: MutableList<String> = mutableListOf()
         for (i in 0..componentList.size - 1) {
             val test: List<Node> =
-                cosmeComponentDictionary.selectNodes("//component[text()='" + componentList.get(i) + "']/ancestor-or-self::*/representation//component")
+                cosmeComponentDictionary.selectNodes("//component[text()='" + componentList.get(i).replace("（ＳＥ）", "(SE)") + "']/ancestor-or-self::*/representation//component")
             unifiedList.add(test.get(0).text)
             Log.d("test", test.get(0).text)
         }
