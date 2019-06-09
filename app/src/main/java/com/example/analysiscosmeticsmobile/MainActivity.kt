@@ -51,5 +51,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        val radioButton1 = findViewById<View>(R.id.radioButton1) as RadioButton
+        // TODO:各ラジオボタンのテキストをコーパスから取得した商品名に初期処理で置換する
+        radioButton1.text = "test"
     }
 }
