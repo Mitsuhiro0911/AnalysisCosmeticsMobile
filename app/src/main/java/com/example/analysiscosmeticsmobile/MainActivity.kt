@@ -26,5 +26,16 @@ class MainActivity : AppCompatActivity() {
         val componentList: MutableList<String> = Parser().extractAllComponent(cosmeProductCorpas)
         // 抽出した全成分情報に同義語統一処理を行う
         val unifiedList: MutableList<String> = PreProcessing().unitySynonym(componentList, cosmeComponentDictionary)
+        Log.d("size", componentList.size.toString())
+        Log.d("size", unifiedList.size.toString())
+//        for(component in componentList){
+//            Log.d("component", component.toString())
+//        }
+//        for(i in 0..unifiedList.size - 1){
+//            Log.d("unified", unifiedList.get(i).toString())
+//        }
+        Log.d("unified", unifiedList.get(124).toString())
+        Log.d("unified", unifiedList.get(125).toString())
+        Log.d("unified", unifiedList.get(126).toString())
     }
 }
