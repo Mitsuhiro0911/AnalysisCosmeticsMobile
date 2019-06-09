@@ -16,7 +16,7 @@ class Write {
      */
     fun writeCosineSimilarity(cosArray: Array<Array<Int?>>, cosmeProductCorpas: Document): Unit{
         val productNameList: List<Node> = cosmeProductCorpas.selectNodes("//product//name")
-        val fw = FileWriter("data/output/cosine_similarity.csv")
+        val fw = FileWriter("cosine_similarity.csv")
         val pw = PrintWriter(BufferedWriter(fw))
         for (i in 0 until cosArray.size) {
             pw.print("${productNameList.get(i).text}")
