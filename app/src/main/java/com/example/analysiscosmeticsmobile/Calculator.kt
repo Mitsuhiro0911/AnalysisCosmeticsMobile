@@ -44,11 +44,11 @@ class Calculator{
      * @param[idfMap] ある成分を含んでいる商品数で算出したIDF値のマップ
      * @return 商品の素性ベクトル
      */
-    fun calFeatureVector(productNum: Int, unifiedList: MutableList<String>, idfMap: LinkedHashMap<String, Double>, cosmeComponentDictionary: Document): MutableList<LinkedHashMap<String, Double>>{
+    fun calFeatureVector(productNum: Int, unifiedList: MutableList<String>, idfMap: LinkedHashMap<String, Double>, cosmeProductCorpas: Document, cosmeComponentDictionary: Document): MutableList<LinkedHashMap<String, Double>>{
         val productMapList = mutableListOf<LinkedHashMap<String, Double>>()
         for (i in 1..productNum) {
             val productInformation: String = "//product[@id=".plus(i).plus("]//component")
-            val nodes: List<Node> = Constants.cosmeProductCorpas.selectNodes(productInformation)
+            val nodes: List<Node> = cosmeProductCorpas.selectNodes(productInformation)
             val productElementList = mutableListOf<String>()
             for (node in nodes) {
                 productElementList.add(node.text)

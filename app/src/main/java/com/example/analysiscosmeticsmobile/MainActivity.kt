@@ -28,12 +28,7 @@ class MainActivity : AppCompatActivity() {
         val unifiedList: MutableList<String> = PreProcessing().unitySynonym(componentList, cosmeComponentDictionary)
         // 成分を含有する商品数の尺度でIDF値を計算
         val idfMap: LinkedHashMap<String, Double> = cal.calIDF(productNum, unifiedList)
-
-        // 動作テスト用
-        Log.d("size", idfMap.size.toString())
-        for(idf in idfMap){
-            Log.d("idf", idf.toString())
-        }
-
+        // 商品ごとの素性ベクトルを計算
+        val productMapList = cal.calFeatureVector(productNum, unifiedList, idfMap, cosmeProductCorpas, cosmeComponentDictionary)
     }
 }
