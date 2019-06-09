@@ -30,5 +30,22 @@ class MainActivity : AppCompatActivity() {
         val idfMap: LinkedHashMap<String, Double> = cal.calIDF(productNum, unifiedList)
         // 商品ごとの素性ベクトルを計算
         val productMapList = cal.calFeatureVector(productNum, unifiedList, idfMap, cosmeProductCorpas, cosmeComponentDictionary)
+        // 二次元配列
+        val cosArray = Array(productMapList.size, { arrayOfNulls<Int>(productMapList.size) })
+        // 商品の全組合せのコサイン類似度を計算
+        for (i in 0 until productMapList.size) {
+            val vector1 = productMapList.get(i).values.toDoubleArray()
+            for (j in 0 until productMapList.size) {
+                val vector2 = productMapList.get(j).values.toDoubleArray()
+                if (i == j) {
+                    cosArray[i][j] = 0
+                    break
+                }
+                if (cosArray[i][j] == null) {
+                    cosArray[i][j] = (cal.calCosSimilarity(vector1, vector2) * Constants.NORM).toInt()
+                    cosArray[j][i] = cosArray[i][j]
+                }
+            }
+        }
     }
 }
