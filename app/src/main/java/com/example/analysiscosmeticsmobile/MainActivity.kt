@@ -26,5 +26,14 @@ class MainActivity : AppCompatActivity() {
         val componentList: MutableList<String> = Parser().extractAllComponent(cosmeProductCorpas)
         // 抽出した全成分情報に同義語統一処理を行う
         val unifiedList: MutableList<String> = PreProcessing().unitySynonym(componentList, cosmeComponentDictionary)
+        // 成分を含有する商品数の尺度でIDF値を計算
+        val idfMap: LinkedHashMap<String, Double> = cal.calIDF(productNum, unifiedList)
+
+        // 動作テスト用
+        Log.d("size", idfMap.size.toString())
+        for(idf in idfMap){
+            Log.d("idf", idf.toString())
+        }
+
     }
 }
