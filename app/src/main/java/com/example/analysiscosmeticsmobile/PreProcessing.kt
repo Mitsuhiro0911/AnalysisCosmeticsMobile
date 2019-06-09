@@ -14,10 +14,9 @@ class PreProcessing{
     fun unitySynonym(componentList: MutableList<String>, cosmeComponentDictionary: Document): MutableList<String> {
         val unifiedList: MutableList<String> = mutableListOf()
         for (i in 0..componentList.size - 1) {
-            val test: List<Node> =
+            val unifiedWord: List<Node> =
                 cosmeComponentDictionary.selectNodes("//component[text()='" + componentList.get(i).replace("（ＳＥ）", "(SE)") + "']/ancestor-or-self::*/representation//component")
-            unifiedList.add(test.get(0).text)
-            Log.d("test", test.get(0).text)
+            unifiedList.add(unifiedWord.get(0).text)
         }
         return unifiedList
     }
