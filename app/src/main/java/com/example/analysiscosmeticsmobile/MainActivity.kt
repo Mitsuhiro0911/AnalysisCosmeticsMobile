@@ -4,6 +4,10 @@ package com.example.analysiscosmeticsmobile
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import kotlinx.android.synthetic.main.activity_main.*
 import org.dom4j.io.SAXReader
 
 
