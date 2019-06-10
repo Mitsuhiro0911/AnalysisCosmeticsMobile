@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.activity_main.*
+import org.dom4j.Node
 import org.dom4j.io.SAXReader
 
 
@@ -51,8 +52,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val productNameList: List<Node> = cosmeProductCorpas.selectNodes("//product//name")
         val radioButton1 = findViewById<View>(R.id.radioButton1) as RadioButton
-        // TODO:各ラジオボタンのテキストをコーパスから取得した商品名に初期処理で置換する
-        radioButton1.text = "test"
+        radioButton1.text = productNameList.get(0).text
     }
 }
