@@ -52,9 +52,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         val productNameList: List<Node> = cosmeProductCorpas.selectNodes("//product//name")
-        val radioButton1 = findViewById<View>(R.id.radioButton1) as RadioButton
-        radioButton1.text = productNameList.get(0).text
+        var radioGroup = findViewById<View>(R.id.radioGroup) as RadioGroup
+        for(i in 0 until productNameList.size){
+            val radio = RadioButton(this)
+            radio.text = productNameList.get(i).text
+            radioGroup.addView(radio)
+        }
+
+        // オブジェクト確認用コード
+        Log.d("radio", "${radioGroup.getChildAt(3)}")
+
     }
 }
