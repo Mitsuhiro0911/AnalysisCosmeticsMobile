@@ -17,7 +17,7 @@
             android:text="実行"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
+            android:id="@+id/executeButton"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
@@ -28,7 +28,7 @@
             android:layout_height="317dp"
             android:id="@+id/scrollView2"
             tools:layout_editor_absoluteX="6dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/button">
+            app:layout_constraintBottom_toTopOf="@+id/executeButton">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
             <RadioGroup

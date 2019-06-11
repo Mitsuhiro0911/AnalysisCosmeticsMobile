@@ -60,8 +60,10 @@ class MainActivity : AppCompatActivity() {
             radioGroup.addView(radio)
         }
 
-        // オブジェクト確認用コード
-        Log.d("radio", "${radioGroup.getChildAt(3)}")
+        val executeButton = findViewById<View>(R.id.executeButton)
+        executeButton.setOnClickListener {
+            Log.d("radio", "タップ成功")
+        }
 
     }
 }
