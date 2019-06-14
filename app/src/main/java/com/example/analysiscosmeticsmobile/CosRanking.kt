@@ -15,5 +15,7 @@ class CosRanking : AppCompatActivity() {
 
         val checkedId = intent.getIntExtra("EXTRA_DATA", -1)
         Log.d("cosranking", "${checkedId}")
+        for(i in 0..10){
+        }
     }
 }

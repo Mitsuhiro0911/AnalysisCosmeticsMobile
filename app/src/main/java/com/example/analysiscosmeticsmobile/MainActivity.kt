@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Data().setData()
         // オブジェクト生成
         val reader = SAXReader()
         val cosmeProductCorpas = reader.read(assets.open("cosme_product.xml"))
