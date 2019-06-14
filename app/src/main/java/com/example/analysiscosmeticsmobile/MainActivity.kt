@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             val checkedId = radioGroup.getCheckedRadioButtonId()
             Log.d("checked", "${checkedId}")
             val intent = Intent(this, CosRanking::class.java)
+            intent.putExtra("EXTRA_DATA", checkedId);
             startActivity(intent)
         }
     }
