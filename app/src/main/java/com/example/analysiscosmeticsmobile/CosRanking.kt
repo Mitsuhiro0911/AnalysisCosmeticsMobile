@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_cos_ranking.*
 import org.dom4j.Node
 
 
@@ -32,7 +31,9 @@ class CosRanking : AppCompatActivity() {
         var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
         var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
 //        cosArray.sortDescending()
-        sortDescending(cosArray)
+        // ソート用の変数へ代入 TODO:誤ってシャローコピーしている。ディープコピーに変更すること。
+        var pNameList = Data.productNameList
+        sortDescending(cosArray, pNameList)
         for(i in 0 until cosArray.size){
             // コサイン類似度を動的に生成したTextViewに入れる
             val cosTextView = TextView(this)
@@ -51,16 +52,23 @@ class CosRanking : AppCompatActivity() {
             productLinerLayout.addView(productTextView)
         }
     }
-    fun sortDescending(n: MutableList<Int>) {
-        var tmp: Int
+    fun sortDescending(n: MutableList<Int>, pNameList: MutableList<Node>) {
+        var cosTmp: Int
         var minIndex: Int
+        var nameTmp: Node
         for(i in n.indices.filter({ it < n.size - 1 })) {
             minIndex = i
             n.indices.filter({ it >= i + 1 }).forEach({ j -> if(n[j] > n[minIndex]) minIndex = j })
             if(minIndex != i) {
-                tmp = n[i]
+                // コサイン類似度のソート
+                cosTmp = n[i]
                 n[i] = n[minIndex]
-                n[minIndex] = tmp
+                n[minIndex] = cosTmp
+
+                // コサイン類似度の尺度で商品名をソート
+                nameTmp = pNameList[i]
+                pNameList[i] = pNameList[minIndex]
+                pNameList[minIndex] = nameTmp
             }
         }
     }

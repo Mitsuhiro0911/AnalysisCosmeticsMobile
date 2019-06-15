@@ -22,7 +22,7 @@ class Data{
         // 商品ごとの素性ベクトル
         var productMapList: MutableList<LinkedHashMap<String, Double>> = mutableListOf()
         // 全商品の名前のリスト
-        var productNameList: List<Node> = listOf()
+        var productNameList: MutableList<Node> = mutableListOf()
     }
 
     fun setData(cosmeProductCorpas: Document, cosmeComponentDictionary: Document){
