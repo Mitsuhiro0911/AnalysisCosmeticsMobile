@@ -21,24 +21,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Data().setData()
         // オブジェクト生成
         val reader = SAXReader()
         val cosmeProductCorpas = reader.read(assets.open("cosme_product.xml"))
         val cosmeComponentDictionary = reader.read(assets.open("cosme_component_dictionary.xml"))
-        val cal = Calculator()
-        val write = Write()
+        Data().setData(cosmeProductCorpas, cosmeComponentDictionary)
 
-        // コーパスの商品数を計算
-        val productNum = cosmeProductCorpas.selectNodes("//product").count()
-        // 全成分情報を抽出
-        val componentList: MutableList<String> = Parser().extractAllComponent(cosmeProductCorpas)
-        // 抽出した全成分情報に同義語統一処理を行う
-        val unifiedList: MutableList<String> = PreProcessing().unitySynonym(componentList, cosmeComponentDictionary)
-        // 成分を含有する商品数の尺度でIDF値を計算
-        val idfMap: LinkedHashMap<String, Double> = cal.calIDF(productNum, unifiedList)
-        // 商品ごとの素性ベクトルを計算
-        val productMapList = cal.calFeatureVector(productNum, unifiedList, idfMap, cosmeProductCorpas, cosmeComponentDictionary)
 //        // 二次元配列
 //        val cosArray = Array(productMapList.size, { arrayOfNulls<Int>(productMapList.size) })
 //        // 商品の全組合せのコサイン類似度を計算
