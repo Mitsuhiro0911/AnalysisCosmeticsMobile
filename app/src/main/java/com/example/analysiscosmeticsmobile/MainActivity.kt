@@ -44,13 +44,12 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            }
 //        }
-        val productNameList: List<Node> = cosmeProductCorpas.selectNodes("//product//name")
         var radioGroup = findViewById<View>(R.id.radioGroup) as RadioGroup
         // ラジオボタンを商品数分だけ動的に生成
-        for(i in 0 until productNameList.size){
+        for(i in 0 until Data.productNameList.size){
             val radio = RadioButton(this)
             // ラジオボタンのテキストに商品名を入れる
-            radio.text = productNameList.get(i).text
+            radio.text = Data.productNameList.get(i).text
             // ラジオボタンのidを動的に生成
             radio.id = i
             radioGroup.addView(radio)
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             val checkedId = radioGroup.getCheckedRadioButtonId()
             Log.d("checked", "${checkedId}")
             val intent = Intent(this, CosRanking::class.java)
-            intent.putExtra("EXTRA_DATA", checkedId);
+            intent.putExtra("CHECKED_ID", checkedId);
             startActivity(intent)
         }
     }

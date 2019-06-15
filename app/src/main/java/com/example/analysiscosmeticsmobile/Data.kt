@@ -1,6 +1,7 @@
 package com.example.analysiscosmeticsmobile
 
 import org.dom4j.Document
+import org.dom4j.Node
 import org.dom4j.io.SAXReader
 
 class Data{
@@ -20,6 +21,8 @@ class Data{
         var idfMap: LinkedHashMap<String, Double> = linkedMapOf()
         // 商品ごとの素性ベクトル
         var productMapList: MutableList<LinkedHashMap<String, Double>> = mutableListOf()
+        // 全商品の名前のリスト
+        var productNameList: List<Node> = listOf()
     }
 
     fun setData(cosmeProductCorpas: Document, cosmeComponentDictionary: Document){
@@ -36,5 +39,7 @@ class Data{
         idfMap = cal.calIDF(productNum, unifiedList)
         // 商品ごとの素性ベクトルを計算
         productMapList = cal.calFeatureVector(productNum, unifiedList, idfMap, cosmeProductCorpas, cosmeComponentDictionary)
+        // 全商品の名前のリストを取得
+        productNameList = cosmeProductCorpas.selectNodes("//product//name")
     }
 }

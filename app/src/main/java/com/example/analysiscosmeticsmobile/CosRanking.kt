@@ -19,12 +19,12 @@ class CosRanking : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cos_ranking)
 
-        val checkedId = intent.getIntExtra("EXTRA_DATA", -1)
+        val checkedId = intent.getIntExtra("CHECKED_ID", -1)
         Log.d("cosranking", "${checkedId}")
         val cal = Calculator()
         val cosArray = mutableListOf<Int>()
         val vector1 = Data.productMapList.get(checkedId).values.toDoubleArray()
-        for(i in 0..10){
+        for(i in 0 until 10){
             if(i == checkedId){
                 cosArray.add(0)
             } else {
@@ -36,7 +36,7 @@ class CosRanking : AppCompatActivity() {
         for(i in 0 until cosArray.size){
             val textView = TextView(this)
             // ラジオボタンのテキストに商品名を入れる
-            textView.text = cosArray.get(i).toString()
+            textView.text = "${Data.productNameList.get(i).text}     ${cosArray.get(i).toString()}"
             // ラジオボタンのidを動的に生成
             textView.id = i
             linerLayout.addView(textView)
