@@ -5,6 +5,11 @@ import android.os.Bundle
 import android.content.Intent
 import android.nfc.NfcAdapter.EXTRA_DATA
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import net.sf.javaml.tools.InstanceTools.array
 
 
@@ -27,8 +32,14 @@ class CosRanking : AppCompatActivity() {
                 cosArray.add((cal.calCosSimilarity(vector1, vector2) * Data.NORM).toInt())
             }
         }
-        for(cos in cosArray){
-            Log.d("cosarray", "${cos}")
+        var linerLayout = findViewById<View>(R.id.linerLayout) as LinearLayout
+        for(i in 0 until cosArray.size){
+            val textView = TextView(this)
+            // ラジオボタンのテキストに商品名を入れる
+            textView.text = cosArray.get(i).toString()
+            // ラジオボタンのidを動的に生成
+            textView.id = i
+            linerLayout.addView(textView)
         }
     }
 }
