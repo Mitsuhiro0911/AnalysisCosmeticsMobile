@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_cos_ranking.*
+import org.dom4j.Node
 
 
 class CosRanking : AppCompatActivity() {
@@ -19,7 +21,7 @@ class CosRanking : AppCompatActivity() {
         val cal = Calculator()
         val cosArray = mutableListOf<Int>()
         val vector1 = Data.productMapList.get(checkedId).values.toDoubleArray()
-        for(i in 0 until 10){
+        for(i in 0 until Data.productMapList.size){
             if(i == checkedId){
                 cosArray.add(0)
             } else {
@@ -29,6 +31,8 @@ class CosRanking : AppCompatActivity() {
         }
         var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
         var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
+//        cosArray.sortDescending()
+        sortDescending(cosArray)
         for(i in 0 until cosArray.size){
             // コサイン類似度を動的に生成したTextViewに入れる
             val cosTextView = TextView(this)
@@ -45,6 +49,19 @@ class CosRanking : AppCompatActivity() {
             // TextViewのidを動的に生成
             productTextView.id = i
             productLinerLayout.addView(productTextView)
+        }
+    }
+    fun sortDescending(n: MutableList<Int>) {
+        var tmp: Int
+        var minIndex: Int
+        for(i in n.indices.filter({ it < n.size - 1 })) {
+            minIndex = i
+            n.indices.filter({ it >= i + 1 }).forEach({ j -> if(n[j] > n[minIndex]) minIndex = j })
+            if(minIndex != i) {
+                tmp = n[i]
+                n[i] = n[minIndex]
+                n[minIndex] = tmp
+            }
         }
     }
 }
