@@ -2,15 +2,10 @@ package com.example.analysiscosmeticsmobile
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent
-import android.nfc.NfcAdapter.EXTRA_DATA
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
-import net.sf.javaml.tools.InstanceTools.array
 
 
 class CosRanking : AppCompatActivity() {
@@ -32,14 +27,24 @@ class CosRanking : AppCompatActivity() {
                 cosArray.add((cal.calCosSimilarity(vector1, vector2) * Data.NORM).toInt())
             }
         }
-        var linerLayout = findViewById<View>(R.id.linerLayout) as LinearLayout
+        var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
+        var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
         for(i in 0 until cosArray.size){
-            val textView = TextView(this)
-            // ラジオボタンのテキストに商品名を入れる
-            textView.text = "${Data.productNameList.get(i).text}     ${cosArray.get(i).toString()}"
-            // ラジオボタンのidを動的に生成
-            textView.id = i
-            linerLayout.addView(textView)
+            // コサイン類似度を動的に生成したTextViewに入れる
+            val cosTextView = TextView(this)
+            // TextViewにコサイン類似度を入れる
+            cosTextView.text = "${cosArray.get(i).toString()}"
+            // TextViewのidを動的に生成
+            cosTextView.id = i
+            cosLinerLayout.addView(cosTextView)
+
+            // 商品名を動的に生成したTextViewに入れる
+            val productTextView = TextView(this)
+            // TextViewにコサイン類似度を入れる
+            productTextView.text = "${i + 1}位：${Data.productNameList.get(i).text}"
+            // TextViewのidを動的に生成
+            productTextView.id = i
+            productLinerLayout.addView(productTextView)
         }
     }
 }
