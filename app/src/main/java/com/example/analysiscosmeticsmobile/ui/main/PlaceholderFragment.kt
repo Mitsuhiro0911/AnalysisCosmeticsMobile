@@ -8,6 +8,12 @@ import android.widget.TextView
 import android.support.v4.app.Fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.util.Log
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import com.example.analysiscosmeticsmobile.CosRanking
+import com.example.analysiscosmeticsmobile.Data
 import com.example.analysiscosmeticsmobile.R
 
 /**
@@ -33,6 +39,26 @@ class PlaceholderFragment : Fragment() {
         pageViewModel.text.observe(this, Observer<String> {
             textView.text = it
         })
+        var radioGroup = root.findViewById<View>(R.id.radioGroup) as RadioGroup
+        // ラジオボタンを商品数分だけ動的に生成
+        for(i in 0 until Data.productNameList.size){
+            val radio = RadioButton(context)
+            // ラジオボタンのテキストに商品名を入れる
+            radio.text = Data.productNameList.get(i).text
+            // ラジオボタンのidを動的に生成
+            radio.id = i
+            radioGroup.addView(radio)
+        }
+
+        val executeButton = root.findViewById<View>(R.id.executeButton)
+        executeButton.setOnClickListener {
+            // 選択されたラジオボタンのidを取得
+            val checkedId = radioGroup.getCheckedRadioButtonId()
+            Log.d("checked", "${checkedId}")
+            val intent = Intent(context, CosRanking::class.java)
+            intent.putExtra("CHECKED_ID", checkedId);
+            startActivity(intent)
+        }
         return root
     }
 
