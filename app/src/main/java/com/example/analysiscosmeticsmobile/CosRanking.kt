@@ -49,6 +49,9 @@ class CosRanking : AppCompatActivity() {
             productTextView.text = "${i + 1}位：${Data.productNameList.get(i).text}"
             // TextViewのidを動的に生成
             productTextView.id = i
+            // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
+            productTextView.canScrollHorizontally(0)
+//            productTextView.ellipsize
             productLinerLayout.addView(productTextView)
         }
     }
