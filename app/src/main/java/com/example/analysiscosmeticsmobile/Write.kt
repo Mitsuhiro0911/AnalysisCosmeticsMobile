@@ -3,7 +3,6 @@ package com.example.analysiscosmeticsmobile
 import org.dom4j.Document
 import org.dom4j.Node
 import java.io.BufferedWriter
-import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
 

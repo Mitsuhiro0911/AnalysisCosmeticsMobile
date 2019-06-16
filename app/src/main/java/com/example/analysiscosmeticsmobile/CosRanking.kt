@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import org.dom4j.Node
 
-
 class CosRanking : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
