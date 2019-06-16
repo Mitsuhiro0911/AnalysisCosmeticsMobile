@@ -31,10 +31,11 @@ class CosRanking : AppCompatActivity() {
         var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
         var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
 //        cosArray.sortDescending()
-        // ソート用の変数へ代入 TODO:誤ってシャローコピーしている。ディープコピーに変更すること。
-        var pNameList = Data.productNameList
+        // ソート用の変数へ代入。.mapでディープコピーをし、MutableList型へ再変換している。
+        var pNameList = Data.productNameList.map{ it } as MutableList
+        Log.d("instance=","${pNameList === Data.productNameList}")
         sortDescending(cosArray, pNameList)
-        for(i in 0 until cosArray.size){
+        for(i in 0 until 10){
             // コサイン類似度を動的に生成したTextViewに入れる
             val cosTextView = TextView(this)
             // TextViewにコサイン類似度を入れる
@@ -51,7 +52,6 @@ class CosRanking : AppCompatActivity() {
             productTextView.id = i
             // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
             productTextView.canScrollHorizontally(0)
-//            productTextView.ellipsize
             productLinerLayout.addView(productTextView)
         }
     }
