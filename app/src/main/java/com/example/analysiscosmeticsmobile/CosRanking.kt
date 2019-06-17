@@ -46,7 +46,7 @@ class CosRanking : AppCompatActivity() {
             // 商品名を動的に生成したTextViewに入れる
             val productTextView = TextView(this)
             // TextViewにコサイン類似度を入れる
-            productTextView.text = "${i + 1}位：${Data.productNameList.get(i).text}"
+            productTextView.text = "${i + 1}位：${pNameList.get(i).text}"
             // TextViewのidを動的に生成
             productTextView.id = i
             // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
