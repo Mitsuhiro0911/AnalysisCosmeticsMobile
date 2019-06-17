@@ -39,25 +39,29 @@ class PlaceholderFragment : Fragment() {
         pageViewModel.text.observe(this, Observer<String> {
             textView.text = it
         })
-        var radioGroup = root.findViewById<View>(R.id.radioGroup) as RadioGroup
-        // ラジオボタンを商品数分だけ動的に生成
-        for(i in 0 until Data.productNameList.size){
-            val radio = RadioButton(context)
-            // ラジオボタンのテキストに商品名を入れる
-            radio.text = Data.productNameList.get(i).text
-            // ラジオボタンのidを動的に生成
-            radio.id = i
-            radioGroup.addView(radio)
-        }
+        // TODO:タブごとの画面XMLを作り、ARG_SECTION_NUMBERで表示先を分岐させる
+        // 2つ目のタブの画面生成時
+        if (arguments?.getInt(ARG_SECTION_NUMBER) == 2) {
+            var radioGroup = root.findViewById<View>(R.id.radioGroup) as RadioGroup
+            // ラジオボタンを商品数分だけ動的に生成
+            for (i in 0 until Data.productNameList.size) {
+                val radio = RadioButton(context)
+                // ラジオボタンのテキストに商品名を入れる
+                radio.text = Data.productNameList.get(i).text
+                // ラジオボタンのidを動的に生成
+                radio.id = i
+                radioGroup.addView(radio)
+            }
 
-        val executeButton = root.findViewById<View>(R.id.executeButton)
-        executeButton.setOnClickListener {
-            // 選択されたラジオボタンのidを取得
-            val checkedId = radioGroup.getCheckedRadioButtonId()
-            Log.d("checked", "${checkedId}")
-            val intent = Intent(context, CosRanking::class.java)
-            intent.putExtra("CHECKED_ID", checkedId);
-            startActivity(intent)
+            val executeButton = root.findViewById<View>(R.id.executeButton)
+            executeButton.setOnClickListener {
+                // 選択されたラジオボタンのidを取得
+                val checkedId = radioGroup.getCheckedRadioButtonId()
+                Log.d("checked", "${checkedId}")
+                val intent = Intent(context, CosRanking::class.java)
+                intent.putExtra("CHECKED_ID", checkedId);
+                startActivity(intent)
+            }
         }
         return root
     }
