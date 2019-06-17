@@ -34,6 +34,7 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (arguments?.getInt(ARG_SECTION_NUMBER) == 2) {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
         pageViewModel.text.observe(this, Observer<String> {
@@ -41,7 +42,6 @@ class PlaceholderFragment : Fragment() {
         })
         // TODO:タブごとの画面XMLを作り、ARG_SECTION_NUMBERで表示先を分岐させる
         // 2つ目のタブの画面生成時
-        if (arguments?.getInt(ARG_SECTION_NUMBER) == 2) {
             var radioGroup = root.findViewById<View>(R.id.radioGroup) as RadioGroup
             // ラジオボタンを商品数分だけ動的に生成
             for (i in 0 until Data.productNameList.size) {
@@ -62,8 +62,9 @@ class PlaceholderFragment : Fragment() {
                 intent.putExtra("CHECKED_ID", checkedId);
                 startActivity(intent)
             }
-        }
         return root
+        }
+        return null
     }
 
     companion object {
