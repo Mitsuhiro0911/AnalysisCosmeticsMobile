@@ -34,6 +34,10 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (arguments?.getInt(ARG_SECTION_NUMBER) == 1) {
+            val root = inflater.inflate(R.layout.fragment_intro, container, false)
+            return root
+        }
         if (arguments?.getInt(ARG_SECTION_NUMBER) == 2) {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
