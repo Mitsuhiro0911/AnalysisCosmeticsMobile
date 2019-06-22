@@ -40,10 +40,6 @@ class PlaceholderFragment : Fragment() {
         }
         if (arguments?.getInt(ARG_SECTION_NUMBER) == 2) {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
-        })
         // TODO:タブごとの画面XMLを作り、ARG_SECTION_NUMBERで表示先を分岐させる
         // 2つ目のタブの画面生成時
             var radioGroup = root.findViewById<View>(R.id.radioGroup) as RadioGroup
