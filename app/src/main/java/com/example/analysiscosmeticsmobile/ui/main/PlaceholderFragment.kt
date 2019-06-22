@@ -59,7 +59,7 @@ class PlaceholderFragment : Fragment() {
                 val checkedId = radioGroup.getCheckedRadioButtonId()
                 Log.d("checked", "${checkedId}")
                 val intent = Intent(context, CosRanking::class.java)
-                intent.putExtra("CHECKED_ID", checkedId);
+                intent.putExtra("CHECKED_ID", checkedId)
                 startActivity(intent)
             }
         return root

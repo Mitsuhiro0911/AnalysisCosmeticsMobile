@@ -16,6 +16,11 @@ class CosRanking : AppCompatActivity() {
 
         val checkedId = intent.getIntExtra("CHECKED_ID", -1)
         Log.d("cosranking", "${checkedId}")
+
+        // 説明文の情報をセット
+        val descriptionText = findViewById<View>(R.id.descriptionText) as TextView
+        descriptionText.text = "${Data.productNameList.get(checkedId).text}と成分が似た商品"
+
         val cal = Calculator()
         val cosArray = mutableListOf<Int>()
         val vector1 = Data.productMapList.get(checkedId).values.toDoubleArray()

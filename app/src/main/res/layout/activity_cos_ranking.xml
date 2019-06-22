@@ -7,24 +7,52 @@
         android:layout_height="match_parent"
         tools:context=".CosRanking">
 
+    <TextView
+            android:text="類似度"
+            android:layout_width="80dp"
+            android:layout_height="50dp" android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionText" android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
+    <TextView
+            android:text="商品名"
+            android:layout_width="300dp"
+            android:layout_height="50dp" android:id="@+id/textView5"
+            android:textSize="18sp" android:gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionText" android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView4" app:layout_constraintEnd_toStartOf="@+id/textView4"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <TextView
+            android:layout_width="400dp"
+            android:layout_height="50dp" android:id="@+id/descriptionText"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:textSize="18sp"/>
     <ScrollView
             android:layout_width="300dp"
-            android:layout_height="500dp"
+            android:layout_height="400dp"
             android:id="@+id/scrollView4"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/scrollView3"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical" android:id="@+id/productNameList"/>
     </ScrollView>
     <ScrollView
             android:layout_width="80dp"
-            android:layout_height="500dp"
+            android:layout_height="400dp"
             android:id="@+id/scrollView3"
-            app:layout_constraintStart_toEndOf="@+id/scrollView4"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical" android:id="@+id/cosList"/>
     </ScrollView>
