@@ -41,6 +41,8 @@ class CosRanking : AppCompatActivity() {
             cosTextView.text = "${cosArray.get(i).toString()}"
             // TextViewのidを動的に生成
             cosTextView.id = i
+            // TextViewの縦幅を設定
+            cosTextView.height = 100
             cosLinerLayout.addView(cosTextView)
 
             // 商品名を動的に生成したTextViewに入れる
@@ -49,6 +51,8 @@ class CosRanking : AppCompatActivity() {
             productTextView.text = "${i + 1}位：${pNameList.get(i).text}"
             // TextViewのidを動的に生成
             productTextView.id = i
+            // TextViewの縦幅を設定
+            productTextView.height = 100
             // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
             productTextView.canScrollHorizontally(0)
             productLinerLayout.addView(productTextView)
