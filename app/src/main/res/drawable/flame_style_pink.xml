@@ -7,10 +7,9 @@
 
     <!-- グラデーション -->
     <!-- angle:角度、type:linear(=線形) -->
-    <gradient
+    <solid
             android:angle="90"
-            android:endColor="#21ffd3"
-            android:startColor="#1abc9c"
-            android:type="linear" />
+            android:type="linear"
+            android:color="#FFD81B60"/>
 
 </shape>
