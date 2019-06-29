@@ -9,8 +9,7 @@ import android.widget.TextView
 import org.dom4j.Node
 import android.widget.TableLayout
 import android.widget.TableRow
-
-
+import kotlinx.android.synthetic.main.table_row.view.*
 
 
 class CosRanking : AppCompatActivity() {
@@ -70,6 +69,9 @@ class CosRanking : AppCompatActivity() {
             productTextView.canScrollHorizontally(0)
             productLinerLayout.addView(productTextView)
 
+            tableRow.getVirtualChildAt(0).rowtext1.text = "${i + 1}位"
+            tableRow.getVirtualChildAt(1).rowtext2.text = "${pNameList.get(i).text}"
+            tableRow.getVirtualChildAt(2).rowtext3.text = "${cosArray.get(i).toString()}"
             tableLayout.addView(tableRow)
         }
     }
