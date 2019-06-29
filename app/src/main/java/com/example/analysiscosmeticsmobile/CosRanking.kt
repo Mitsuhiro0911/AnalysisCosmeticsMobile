@@ -7,6 +7,11 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.dom4j.Node
+import android.widget.TableLayout
+import android.widget.TableRow
+
+
+
 
 class CosRanking : AppCompatActivity() {
 
@@ -34,12 +39,15 @@ class CosRanking : AppCompatActivity() {
         }
         var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
         var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
+        val tableLayout = findViewById<View>(R.id.tableLayout) as TableLayout
+
 //        cosArray.sortDescending()
         // ソート用の変数へ代入。.mapでディープコピーをし、MutableList型へ再変換している。
         var pNameList = Data.productNameList.map{ it } as MutableList
         Log.d("instance=","${pNameList === Data.productNameList}")
         sortDescending(cosArray, pNameList)
         for(i in 0 until 10){
+            val tableRow = layoutInflater.inflate(R.layout.table_row, null) as TableRow
             // コサイン類似度を動的に生成したTextViewに入れる
             val cosTextView = TextView(this)
             // TextViewにコサイン類似度を入れる
@@ -61,6 +69,8 @@ class CosRanking : AppCompatActivity() {
             // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
             productTextView.canScrollHorizontally(0)
             productLinerLayout.addView(productTextView)
+
+            tableLayout.addView(tableRow)
         }
     }
     fun sortDescending(n: MutableList<Int>, pNameList: MutableList<Node>) {
