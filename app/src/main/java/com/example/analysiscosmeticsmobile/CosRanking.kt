@@ -36,8 +36,6 @@ class CosRanking : AppCompatActivity() {
                 cosArray.add((cal.calCosSimilarity(vector1, vector2) * Data.NORM).toInt())
             }
         }
-        var cosLinerLayout = findViewById<View>(R.id.cosList) as LinearLayout
-        var productLinerLayout = findViewById<View>(R.id.productNameList) as LinearLayout
         val tableLayout = findViewById<View>(R.id.tableLayout) as TableLayout
 
 //        cosArray.sortDescending()
@@ -47,31 +45,17 @@ class CosRanking : AppCompatActivity() {
         sortDescending(cosArray, pNameList)
         for(i in 0 until 10){
             val tableRow = layoutInflater.inflate(R.layout.table_row, null) as TableRow
-            // コサイン類似度を動的に生成したTextViewに入れる
-            val cosTextView = TextView(this)
-            // TextViewにコサイン類似度を入れる
-            cosTextView.text = "${cosArray.get(i).toString()}"
-            // TextViewのidを動的に生成
-            cosTextView.id = i
-            // TextViewの縦幅を設定
-            cosTextView.height = 100
-            cosLinerLayout.addView(cosTextView)
-
-            // 商品名を動的に生成したTextViewに入れる
-            val productTextView = TextView(this)
-            // TextViewにコサイン類似度を入れる
-            productTextView.text = "${i + 1}位：${pNameList.get(i).text}"
-            // TextViewのidを動的に生成
-            productTextView.id = i
-            // TextViewの縦幅を設定
-            productTextView.height = 100
-            // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
-            productTextView.canScrollHorizontally(0)
-            productLinerLayout.addView(productTextView)
-
+            // 順位をセット
             tableRow.getVirtualChildAt(0).rowtext1.text = "${i + 1}位"
+            tableRow.getVirtualChildAt(0).rowtext1.height = 100
+            // 商品名をセット
             tableRow.getVirtualChildAt(1).rowtext2.text = "${pNameList.get(i).text}"
+            tableRow.getVirtualChildAt(1).rowtext2.height = 100
+            // 商品名が長い場合、改行されるのを防ぐ。コサイン類似度と高さがずれるのを防ぐために必要。
+            tableRow.getVirtualChildAt(1).canScrollHorizontally(0)
+            // 類似度をセット
             tableRow.getVirtualChildAt(2).rowtext3.text = "${cosArray.get(i).toString()}"
+            tableRow.getVirtualChildAt(2).rowtext3.height = 100
             tableLayout.addView(tableRow)
         }
     }
