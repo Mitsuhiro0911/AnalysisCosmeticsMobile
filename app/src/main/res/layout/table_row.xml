@@ -20,7 +20,7 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:text="かきくけこ"
-            android:textColor="#FFD81B60" />
+            android:textColor="#FF524F4F" />
 
     <TextView
             android:id="@+id/rowtext3"
@@ -30,5 +30,5 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:text="さしすせそ"
-            android:textColor="#FFD81B60" />
+            android:textColor="#FF114AA8" />
 </TableRow>
