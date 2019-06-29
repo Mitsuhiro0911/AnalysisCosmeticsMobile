@@ -56,6 +56,12 @@ class CosRanking : AppCompatActivity() {
             // 類似度をセット
             tableRow.getVirtualChildAt(2).rowtext3.text = "${cosArray.get(i).toString()}"
             tableRow.getVirtualChildAt(2).rowtext3.height = 100
+
+            if((i + 1) % 2 == 0){
+                tableRow.getVirtualChildAt(0).rowtext1.setBackgroundColor(1)
+                tableRow.getVirtualChildAt(1).rowtext2.setBackgroundColor(1)
+                tableRow.getVirtualChildAt(2).rowtext3.setBackgroundColor(1)
+            }
             tableLayout.addView(tableRow)
         }
     }
